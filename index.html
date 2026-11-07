@@ -99,15 +99,28 @@ body.show-scripts .script-text{display:block}
 .script-toggle{cursor:pointer;border:1.5px solid #24b9ae;border-radius:999px;padding:9px 16px;background:white;color:#08798b;font-weight:750}
 .script-toggle[aria-pressed="true"]{background:#00a99d;color:white}
 @media(max-width:520px){.speed-panel-top{margin:12px 12px 5px;padding:13px 14px}.speed-panel-top .speed-heading strong{font-size:19px}.speed-panel-top .speed-heading span{font-size:13px}.speed-panel-top .speed-buttons{margin-top:5px}.script-toolbar{margin:8px 14px 2px}.sentence{min-height:86px}}
+
+.unit-badge{font-size:clamp(30px,4vw,48px);font-weight:850;letter-spacing:-1px;color:white;display:flex;align-items:center;justify-content:center}
+.speed-panel-top{display:flex;align-items:center;gap:18px}
+.speed-panel-top .speed-buttons{margin-left:auto}
+.script-inline{display:flex;align-items:center;gap:14px;padding-left:22px;margin-left:4px;border-left:2px solid #b9d9f4;flex:0 0 auto}
+.script-eye{font-size:34px;line-height:1;color:#079ba6}
+.script-inline .script-toggle{min-width:150px;padding:13px 20px;font-size:19px;background:white}
+.script-inline .script-toggle[aria-pressed="true"]{background:#00a99d;color:white}
+@media(max-width:760px){
+  .speed-panel-top{flex-wrap:wrap}
+  .speed-panel-top .speed-buttons{margin-left:0;flex:1 1 auto}
+  .script-inline{border-left:0;padding-left:0;margin-left:auto}
+}
 </style>
 </head>
 <body>
 <main class="page">
   <section class="main-panel" aria-label="Sentence Audio Controls">
     <header class="hero">
-      <button class="speaker-icon script-lock" id="scriptLock" type="button" aria-label="解锁 Script 显示控制" title="Script 锁定"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="12" y="21" width="24" height="19" rx="4" fill="currentColor"/><path d="M17 21v-6a7 7 0 0 1 14 0v6" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="30" r="2.5" fill="#168bf0"/><path d="M24 32v4" stroke="#168bf0" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+      <div class="speaker-icon unit-badge" aria-label="Unit 1B">1B</div>
       <div class="hero-content">
-        <h1>1B-What Makes an Olympic Champion?</h1>
+        <h1>What Makes an Olympic Champion?</h1>
       </div>
       <svg class="scene" viewBox="0 0 420 155" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
         <path d="M0 139c34-53 78-62 113-37 25-41 53-47 88-17 47-59 93-40 117-10 37-43 87-18 102 15v65H0Z" fill="#abdfff" opacity=".92"/>
@@ -128,8 +141,11 @@ body.show-scripts .script-text{display:block}
       <button class="speed-btn selected" type="button" data-speed="1" aria-pressed="true">1.0x</button>
       <button class="speed-btn" type="button" data-speed="1.2" aria-pressed="false">1.2x</button>
     </div>
+    <div class="script-inline">
+      <span class="script-eye" aria-hidden="true">◉</span>
+      <button id="scriptToggle" class="script-toggle" type="button" aria-pressed="false">显示 Script</button>
+    </div>
   </section>
-  <div class="script-toolbar" id="scriptToolbar" hidden><span>Script 显示</span><button id="scriptToggle" class="script-toggle" type="button" aria-pressed="false">显示 Script</button></div>
     <nav class="paragraph-nav" aria-label="跳转段落">
       <span class="nav-caption">选择段落</span>
       <a href="#paragraph-a" data-target="a">Paragraph A <small>2 sentences</small></a>
@@ -482,37 +498,26 @@ body.show-scripts .script-text{display:block}
       ++playRequest; player.pause(); current=-1; status.textContent='已收起 '+section.querySelector('h2').textContent; render();
     }
   }));
-  // Script visibility lock
-  const scriptLock = document.getElementById('scriptLock');
-  const scriptToolbar = document.getElementById('scriptToolbar');
+  // Password-protected Script display; hiding never requires a password.
   const scriptToggle = document.getElementById('scriptToggle');
-  let scriptUnlocked = false;
-
-  if (scriptLock && scriptToolbar && scriptToggle) {
-    scriptLock.addEventListener('click', () => {
-      if (!scriptUnlocked) {
-        const password = window.prompt('请输入密码以解锁 Script 显示控制：');
-        if (password === null) return;
-        if (password !== '042316') {
-          window.alert('密码错误，请重新输入。');
-          return;
-        }
-        scriptUnlocked = true;
-        scriptToolbar.hidden = false;
-        scriptLock.classList.add('unlocked');
-        scriptLock.setAttribute('aria-label', 'Script 显示控制已解锁');
-        scriptLock.title = 'Script 控制已解锁';
-        window.alert('解锁成功。现在可以显示或隐藏 Script。');
-      } else {
-        scriptToolbar.hidden = !scriptToolbar.hidden;
-      }
-    });
-
+  if (scriptToggle) {
     scriptToggle.addEventListener('click', () => {
-      const show = !document.body.classList.contains('show-scripts');
-      document.body.classList.toggle('show-scripts', show);
-      scriptToggle.setAttribute('aria-pressed', String(show));
-      scriptToggle.textContent = show ? '隐藏 Script' : '显示 Script';
+      const isShowing = document.body.classList.contains('show-scripts');
+      if (isShowing) {
+        document.body.classList.remove('show-scripts');
+        scriptToggle.setAttribute('aria-pressed', 'false');
+        scriptToggle.textContent = '显示 Script';
+        return;
+      }
+      const password = window.prompt('请输入密码以显示 Script：');
+      if (password === null) return;
+      if (password !== '042316') {
+        window.alert('密码错误，请重新输入。');
+        return;
+      }
+      document.body.classList.add('show-scripts');
+      scriptToggle.setAttribute('aria-pressed', 'true');
+      scriptToggle.textContent = '隐藏 Script';
     });
   }
 
