@@ -107,8 +107,7 @@ body.show-scripts .script-text{display:block}
     <header class="hero">
       <button class="speaker-icon script-lock" id="scriptLock" type="button" aria-label="解锁 Script 显示控制" title="Script 锁定"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="12" y="21" width="24" height="19" rx="4" fill="currentColor"/><path d="M17 21v-6a7 7 0 0 1 14 0v6" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="30" r="2.5" fill="#168bf0"/><path d="M24 32v4" stroke="#168bf0" stroke-width="2.5" stroke-linecap="round"/></svg></button>
       <div class="hero-content">
-        <h1>Sentence Audio Controls</h1>
-        <p class="subtitle">句子音频控制（点击播放单个句子）</p>
+        <h1>1B-What Makes an Olympic Champion?</h1>
       </div>
       <svg class="scene" viewBox="0 0 420 155" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
         <path d="M0 139c34-53 78-62 113-37 25-41 53-47 88-17 47-59 93-40 117-10 37-43 87-18 102 15v65H0Z" fill="#abdfff" opacity=".92"/>
@@ -483,6 +482,40 @@ body.show-scripts .script-text{display:block}
       ++playRequest; player.pause(); current=-1; status.textContent='已收起 '+section.querySelector('h2').textContent; render();
     }
   }));
+  // Script visibility lock
+  const scriptLock = document.getElementById('scriptLock');
+  const scriptToolbar = document.getElementById('scriptToolbar');
+  const scriptToggle = document.getElementById('scriptToggle');
+  let scriptUnlocked = false;
+
+  if (scriptLock && scriptToolbar && scriptToggle) {
+    scriptLock.addEventListener('click', () => {
+      if (!scriptUnlocked) {
+        const password = window.prompt('请输入密码以解锁 Script 显示控制：');
+        if (password === null) return;
+        if (password !== '042316') {
+          window.alert('密码错误，请重新输入。');
+          return;
+        }
+        scriptUnlocked = true;
+        scriptToolbar.hidden = false;
+        scriptLock.classList.add('unlocked');
+        scriptLock.setAttribute('aria-label', 'Script 显示控制已解锁');
+        scriptLock.title = 'Script 控制已解锁';
+        window.alert('解锁成功。现在可以显示或隐藏 Script。');
+      } else {
+        scriptToolbar.hidden = !scriptToolbar.hidden;
+      }
+    });
+
+    scriptToggle.addEventListener('click', () => {
+      const show = !document.body.classList.contains('show-scripts');
+      document.body.classList.toggle('show-scripts', show);
+      scriptToggle.setAttribute('aria-pressed', String(show));
+      scriptToggle.textContent = show ? '隐藏 Script' : '显示 Script';
+    });
+  }
+
   render();
 })();
 </script>
