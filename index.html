@@ -405,6 +405,11 @@ body.show-scripts .script-text{display:block}
   for (let n = 1; n <= 7; n++) {
     sources[28 + n] = `${fAudioBase}F${n}.mp3`;
   }
+  // Paragraph G uses standalone MP3 files in the repository (G1-G10).
+  const gAudioBase = 'units/reading-explorer-3/audio/re3/1b/G/';
+  for (let n = 1; n <= 10; n++) {
+    sources[35 + n] = `${gAudioBase}G${n}.mp3`;
+  }
   const player = document.getElementById('audioPlayer');
   const cards = Array.from(document.querySelectorAll('[data-sentence]'));
   const speeds = Array.from(document.querySelectorAll('[data-speed]'));
