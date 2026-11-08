@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300">
+<defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#e8f6ff"/><stop offset="1" stop-color="#d8f0ff"/></linearGradient><linearGradient id="skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe2cf"/><stop offset="1" stop-color="#e7aa8d"/></linearGradient><linearGradient id="gold" x1="0" x2="1"><stop stop-color="#ffe88a"/><stop offset="1" stop-color="#d79c25"/></linearGradient></defs>
+<rect width="900" height="300" fill="url(#bg)"/>
+<path d="M0 275C120 190 220 225 320 180S520 185 610 155s190-18 290 40v105H0Z" fill="#b9e7e7"/>
+<path d="M0 285c140-45 240-20 350-38s205-45 300-22 160 12 250-5v80H0Z" fill="#9ed3b1"/>
+<!-- classical bust -->
+<g transform="translate(120 28)"><path d="M72 215c10-45 17-64 44-81-21-14-31-39-26-68 7-42 41-66 78-56 35 9 51 43 43 78-5 25-19 44-38 55 31 16 48 39 56 72Z" fill="#f8f5ef" stroke="#c7c9cc" stroke-width="5"/><path d="M111 47c22-32 77-33 99 7-31-18-67-17-99-7Z" fill="#ddd9d2"/><path d="M111 54c-15 11-23 29-21 50 13-20 28-31 49-35m66-7c14 15 18 35 11 55-8-22-19-36-37-46" fill="none" stroke="#d0ccc4" stroke-width="12" stroke-linecap="round"/></g>
+<!-- 18c wig portrait -->
+<g transform="translate(355 28)"><ellipse cx="112" cy="88" rx="50" ry="63" fill="url(#skin)"/><g fill="#f6eadc" stroke="#dfcdbc" stroke-width="3"><circle cx="76" cy="37" r="24"/><circle cx="105" cy="25" r="25"/><circle cx="137" cy="35" r="24"/><circle cx="157" cy="58" r="22"/><circle cx="61" cy="63" r="21"/><circle cx="151" cy="89" r="20"/><circle cx="67" cy="93" r="20"/></g><path d="M78 145c-28 19-43 43-49 72h167c-8-31-24-55-52-72-18 13-48 13-66 0Z" fill="#7bbbdc"/><circle cx="95" cy="82" r="3" fill="#523f39"/><circle cx="129" cy="82" r="3" fill="#523f39"/><path d="M101 111q12 7 24 0" fill="none" stroke="#b75e68" stroke-width="3" stroke-linecap="round"/></g>
+<!-- global/cultural beauty portrait -->
+<g transform="translate(585 35)"><ellipse cx="102" cy="83" rx="48" ry="61" fill="#d89a6f"/><path d="M50 75Q60 8 112 18q42 7 48 57c-28-27-72-35-110 0Z" fill="#171b2b"/><path d="M44 48q57-46 123 5l-13 28q-48-34-99-3Z" fill="#ef3d87"/><path d="M52 56q53-38 108 3" fill="none" stroke="#1e91c8" stroke-width="12"/><path d="M70 144h65l14 77H55Z" fill="url(#gold)"/><path d="M65 153h75M62 169h81M60 185h85M58 201h89" stroke="#9b681c" stroke-width="4"/><circle cx="86" cy="82" r="3" fill="#33241d"/><circle cx="119" cy="82" r="3" fill="#33241d"/><path d="M91 111q12 6 24 0" fill="none" stroke="#8d3c47" stroke-width="3"/></g>
+<!-- cosmetics -->
+<g transform="translate(770 170)"><rect x="0" y="55" width="42" height="50" rx="7" fill="#ff70b5"/><rect x="7" y="43" width="28" height="17" rx="4" fill="#202c48"/><path d="M58 95h90l-8-65H67Z" fill="#27304a"/><g fill="#f4a2b9"><rect x="76" y="48" width="25" height="20"/><rect x="105" y="48" width="25" height="20"/></g><path d="M-5 40q30-31 52-12" fill="none" stroke="#8c573e" stroke-width="9" stroke-linecap="round"/></g>
+</svg>
