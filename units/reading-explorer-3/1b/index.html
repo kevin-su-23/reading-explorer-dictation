@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ecf7ff">
+<title>Reading Explorer 3 · Unit 1B 整篇逐句听写（Paragraph A–G）</title>
+<style>
+:root{--navy:#10265a;--ink:#1a294a;--muted:#526887;--teal:#00a99d;--teal-dark:#078d91;--blue:#168bf0;--border:#b8d7f5;--paper:#ffffff;--shadow:0 15px 35px rgba(37,95,145,.11)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;background:linear-gradient(160deg,#fcfeff 0%,#f5faff 60%,#fff 100%);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft Yahei",sans-serif}
+button{font:inherit;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:4px solid #f6c451;outline-offset:4px}
+.page{width:min(1120px,calc(100% - 40px));margin:clamp(35px,6vh,78px) auto 48px}
+.main-panel{border:2px solid #cbe3fc;border-radius:34px;background:linear-gradient(145deg,#e5f3ff 0%,#f9fcff 45%,#f3fbff 100%);box-shadow:var(--shadow);overflow:hidden}
+.hero{min-height:152px;position:relative;display:flex;align-items:center;gap:22px;padding:28px 36px;overflow:hidden;background:linear-gradient(110deg,rgba(229,243,255,.96),rgba(230,244,255,.84));border-bottom:1px solid rgba(196,224,250,.7)}
+.speaker-icon{flex:none;width:86px;height:86px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#35d9ed 0%,#158bec 65%,#1265cf 100%);box-shadow:inset 0 2px 5px #ffffff95,0 8px 12px #2077c833;color:white;position:relative;z-index:1}
+.speaker-icon svg{width:49px;height:49px}
+.hero-content{position:relative;z-index:2;min-width:0}
+h1{margin:0;color:var(--navy);font-size:clamp(26px,3vw,38px);font-weight:780;letter-spacing:-.6px;line-height:1.2}
+.subtitle{margin:11px 0 0;color:#4b617f;font-size:clamp(15px,1.7vw,22px);font-weight:600}
+.scene{position:absolute;right:0;bottom:0;width:42%;height:100%;pointer-events:none;opacity:.97}
+.sentence-list{display:grid;gap:21px;padding:30px 28px 28px}
+.sentence{display:grid;grid-template-columns:98px minmax(0,1fr);align-items:center;gap:20px;position:relative;width:100%;padding:28px 34px 30px 27px;text-align:left;border-radius:25px;border:2px solid #bcd6f3;background:linear-gradient(110deg,#f7fbff,#eaf5ff);color:var(--navy);cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s,transform .18s;min-height:169px}
+.sentence:hover{border-color:#5bc4d6;box-shadow:0 6px 20px rgba(26,130,179,.13)}
+.sentence:active{transform:scale(.997)}
+.sentence.active{border-color:#00b4ab;background:linear-gradient(110deg,#e4fcfa,#e6f9fb 65%,#e2f8f5);box-shadow:0 0 0 1px #66e0d41c,0 7px 17px rgba(0,154,152,.07)}
+.play-circle{width:88px;height:88px;display:grid;place-items:center;background:linear-gradient(140deg,#2adfe6,#1291e5 65%,#0474b6);border-radius:50%;box-shadow:inset 0 4px 6px #ffffff55,0 5px 10px #1087c52b;color:#fff;position:relative}
+.sentence.active .play-circle{background:linear-gradient(140deg,#29dad9,#02afa9 58%,#0784a5)}
+.play-circle svg{width:40px;height:40px}
+.sentence-body{display:block;border-left:2px solid #bbdff1;padding-left:27px;min-width:0}
+.sentence-header{display:flex;gap:14px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sentence-title{color:var(--navy);font-size:clamp(23px,2.55vw,31px);font-weight:790;letter-spacing:-.5px;line-height:1.1}
+.duration{display:inline-block;flex:none;border-radius:50px;border:2px solid #b4d8f4;background:#e6f5ff;color:#1c3962;font-size:17px;font-variant-numeric:tabular-nums;line-height:1;padding:10px 15px;white-space:nowrap}
+.sentence-text{display:block;color:#101c2f;font-size:clamp(19px,2.35vw,25px);line-height:1.55;letter-spacing:-.25px;max-width:790px}
+.tiny-progress{display:block;height:4px;border-radius:8px;margin-top:16px;background:rgba(17,116,147,.13);overflow:hidden;max-width:98%;opacity:0;transition:opacity .15s}
+.sentence.is-playing .tiny-progress,.sentence.is-paused .tiny-progress{opacity:1}
+.tiny-progress-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,#20cabb,#098cc9);border-radius:8px}
+.speed-panel{display:flex;align-items:center;gap:22px;padding:25px 34px;border:2px solid #b9dcff;border-radius:28px;margin-top:30px;background:linear-gradient(115deg,#e9f6ff 0%,#f7fbff 42%,#e8f4ff 100%);box-shadow:var(--shadow)}
+.speed-icon{flex:0 0 96px;display:grid;place-items:center;border-right:2px solid #b7d9f2;min-height:70px;padding-right:20px;color:#0696a5}
+.speed-icon svg{width:70px;height:60px}
+.speed-heading{flex:1 1 auto;min-width:180px}
+.speed-heading strong{display:block;color:var(--navy);font-size:clamp(25px,2.75vw,34px);letter-spacing:-.6px;line-height:1.15}
+.speed-heading span{display:block;color:#4c6488;font-size:19px;font-weight:600;margin-top:6px}
+.speed-buttons{display:flex;gap:17px;flex:0 0 auto}
+.speed-btn{cursor:pointer;min-width:130px;padding:16px 22px;border-radius:20px;background:linear-gradient(165deg,#fff,#eef6ff);border:2px solid #bfdcfa;box-shadow:0 4px 8px rgba(27,101,167,.10);color:var(--navy);font-size:clamp(22px,2.4vw,31px);line-height:1.1;font-weight:790;transition:transform .12s,filter .12s}
+.speed-btn:hover{filter:brightness(.975)}
+.speed-btn:active{transform:scale(.97)}
+.speed-btn.selected{color:white;background:linear-gradient(165deg,#15c4b9,#009da1 70%,#018c9c);border-color:#10a7a8;box-shadow:inset 0 1px 2px #ffffff55,0 5px 10px #089c9c26}
+.footer-note{font-size:13px;color:#73839c;text-align:center;margin-top:20px}
+@media(max-width:850px){.hero{min-height:140px;padding:24px}.speaker-icon{width:70px;height:70px}.scene{width:34%;opacity:.7}.sentence-list{padding:22px;gap:17px}.sentence{grid-template-columns:68px minmax(0,1fr);gap:13px;padding:23px 21px 24px 18px;min-height:145px}.play-circle{width:64px;height:64px}.play-circle svg{width:31px;height:31px}.sentence-body{padding-left:18px}.speed-panel{flex-wrap:wrap;padding:22px 25px}.speed-icon{flex-basis:70px}.speed-icon svg{width:57px}.speed-heading{flex:1}.speed-buttons{flex:1 1 100%;display:grid;grid-template-columns:repeat(3,1fr)}.speed-btn{min-width:0;padding:16px 10px}}
+@media(max-width:520px){.page{width:min(100% - 24px,480px);margin:23px auto 30px}.main-panel{border-radius:24px}.hero{gap:12px;min-height:113px;padding:18px 15px}.speaker-icon{width:56px;height:56px}.speaker-icon svg{width:34px;height:34px}.subtitle{margin-top:6px;font-size:13px}.scene{width:29%;opacity:.37}h1{font-size:23px}.sentence-list{padding:15px;gap:14px}.sentence{grid-template-columns:49px minmax(0,1fr);gap:10px;min-height:unset;padding:18px 13px;border-radius:19px}.play-circle{width:49px;height:49px}.play-circle svg{width:26px;height:26px}.sentence-body{padding-left:11px}.sentence-header{margin-bottom:8px;gap:6px}.sentence-title{font-size:20px}.duration{font-size:12px;padding:7px 9px;border-width:1px}.sentence-text{font-size:16.5px;line-height:1.5}.speed-panel{margin-top:17px;gap:8px 14px;padding:18px;border-radius:22px}.speed-icon{flex:0 0 48px;min-height:54px;padding-right:10px}.speed-icon svg{width:44px;height:43px}.speed-heading{min-width:120px}.speed-heading strong{font-size:24px}.speed-heading span{font-size:15px;margin-top:3px}.speed-buttons{gap:9px;margin-top:9px}.speed-btn{font-size:21px;padding:13px 7px;border-radius:14px}.footer-note{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.sentence,.speed-btn,.tiny-progress{transition:none}}
+
+.paragraph-nav{display:flex;align-items:center;gap:11px;padding:18px 29px 8px;flex-wrap:wrap}
+.nav-caption{font-weight:700;font-size:15px;color:#526887;margin-right:6px}
+.paragraph-nav a{display:inline-flex;gap:9px;align-items:center;text-decoration:none;color:#175483;font-size:16px;font-weight:760;padding:10px 17px;border:1.5px solid #b8d9ef;background:#f0f8ff;border-radius:40px;transition:background .15s,border-color .15s}
+.paragraph-nav a:hover,.paragraph-nav a:focus-visible{background:#e1f9f8;border-color:#39beb4}
+.paragraph-nav small{font-size:12px;font-weight:600;color:#57738d}
+.paragraph-section{scroll-margin-top:18px}
+.paragraph-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:15px 30px 0;padding:13px 4px 12px;border-bottom:1px solid #d3e7f7}
+.paragraph-heading h2{font-size:21px;color:#173c70;font-weight:800;margin:0;letter-spacing:.01em}
+.paragraph-count{background:#def4f8;color:#08798b;padding:7px 13px;border-radius:20px;font-size:13px;font-weight:700;white-space:nowrap}
+.paragraph-section+.paragraph-section{margin-top:11px;border-top:1px solid #dcecf8;padding-top:13px}
+.paragraph-section:last-child{padding-bottom:6px}
+.sentence-list{padding-top:18px}
+.sentence.active{border-color:#00b4ab}
+@media(max-width:520px){.paragraph-nav{padding:16px 14px 4px;gap:8px}.nav-caption{display:none}.paragraph-nav a{padding:9px 12px;font-size:14px;gap:6px;flex:1;justify-content:center}.paragraph-nav small{display:none}.paragraph-heading{margin:12px 17px 0;padding:11px 2px}.paragraph-heading h2{font-size:19px}}
+
+/* Complete article enhancements */
+.paragraph-nav{position:relative;gap:9px;}
+.paragraph-nav a{padding:9px 13px;font-size:14px;}
+.paragraph-nav small{font-size:11px;}
+.paragraph-section .paragraph-heading{cursor:pointer;list-style:none;user-select:none;}
+.paragraph-section .paragraph-heading::-webkit-details-marker{display:none}
+.paragraph-heading-right{display:flex;align-items:center;gap:12px}
+.chevron{width:20px;height:20px;color:#416a98;transition:transform .2s}
+.paragraph-section:not([open]) .chevron{transform:rotate(-90deg)}
+.paragraph-section:not([open]){padding-bottom:9px}
+.paragraph-section:not([open]) .paragraph-heading{margin-bottom:8px}
+.paragraph-section summary:hover h2{color:#008d9e}
+.speed-panel{position:sticky;bottom:12px;z-index:5;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+@media(max-width:520px){.paragraph-nav{gap:7px}.paragraph-nav a{flex:0 1 auto;min-width:calc(33.333% - 5px);font-size:13px;padding:8px 9px}.paragraph-heading-right{gap:7px}.speed-panel{bottom:7px}}
+
+/* 1B study-mode layout */
+.speed-panel-top{position:relative;bottom:auto;z-index:2;margin:16px 18px 8px;padding:17px 24px;border-radius:22px;box-shadow:none}
+.speed-panel-top .speed-icon{flex-basis:72px;min-height:56px}
+.speed-panel-top .speed-icon svg{width:52px;height:48px}
+.speed-panel-top .speed-heading strong{font-size:clamp(22px,2.3vw,30px)}
+.speed-panel-top .speed-heading span{font-size:16px}
+.speed-panel-top .speed-btn{min-width:112px;padding:13px 18px;font-size:clamp(20px,2vw,26px)}
+.script-lock{border:0;cursor:pointer;padding:0}
+.script-lock.unlocked{background:linear-gradient(145deg,#2adfd9,#00a99d 65%,#078d91)}
+.script-text{display:none}
+body.show-scripts .script-text{display:block}
+.script-toolbar{margin:10px 29px 2px;padding:12px 16px;border:1.5px solid #9bded9;border-radius:18px;background:#e8fbf9;display:flex;align-items:center;justify-content:space-between;gap:14px;color:#08798b;font-weight:750}
+.script-toolbar[hidden]{display:none}
+.script-toggle{cursor:pointer;border:1.5px solid #24b9ae;border-radius:999px;padding:9px 16px;background:white;color:#08798b;font-weight:750}
+.script-toggle[aria-pressed="true"]{background:#00a99d;color:white}
+@media(max-width:520px){.speed-panel-top{margin:12px 12px 5px;padding:13px 14px}.speed-panel-top .speed-heading strong{font-size:19px}.speed-panel-top .speed-heading span{font-size:13px}.speed-panel-top .speed-buttons{margin-top:5px}.script-toolbar{margin:8px 14px 2px}.sentence{min-height:86px}}
+
+.unit-badge{font-size:clamp(30px,4vw,48px);font-weight:850;letter-spacing:-1px;color:white;display:flex;align-items:center;justify-content:center}
+.speed-panel-top{display:flex;align-items:center;gap:18px}
+.speed-panel-top .speed-buttons{margin-left:auto}
+.script-inline{display:flex;align-items:center;gap:14px;padding-left:22px;margin-left:4px;border-left:2px solid #b9d9f4;flex:0 0 auto}
+.script-eye{font-size:34px;line-height:1;color:#079ba6}
+.script-inline .script-toggle{min-width:150px;padding:13px 20px;font-size:19px;background:white}
+.script-inline .script-toggle[aria-pressed="true"]{background:#00a99d;color:white}
+@media(max-width:760px){
+  .speed-panel-top{flex-wrap:wrap}
+  .speed-panel-top .speed-buttons{margin-left:0;flex:1 1 auto}
+  .script-inline{border-left:0;padding-left:0;margin-left:auto}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="main-panel" aria-label="Sentence Audio Controls">
+    <header class="hero">
+      <div class="speaker-icon unit-badge" aria-label="Unit 1B">1B</div>
+      <div class="hero-content">
+        <h1>What Makes an Olympic Champion?</h1>
+      </div>
+      <svg class="scene" viewBox="0 0 420 155" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path d="M0 139c34-53 78-62 113-37 25-41 53-47 88-17 47-59 93-40 117-10 37-43 87-18 102 15v65H0Z" fill="#abdfff" opacity=".92"/>
+        <path d="M0 146c48-33 75-22 116-14 36-30 77-31 108-13 49-39 86-39 127-10 39-23 61-3 69 3v43H0Z" fill="#9acda7"/>
+        <path d="M0 152c66-31 148-23 211-11 94-22 153-14 209 2v12H0Z" fill="#6caf83"/>
+        <path d="M0 155c130-19 266-22 420-6v6Z" fill="#ed7c5b"/>
+        <g fill="none" stroke-width="4.2" transform="translate(180 17)">
+          <circle cx="31" cy="26" r="24" stroke="#1181de"/><circle cx="88" cy="26" r="24" stroke="#232a43"/><circle cx="145" cy="26" r="24" stroke="#ff3b54"/><circle cx="60" cy="54" r="24" stroke="#efb900"/><circle cx="117" cy="54" r="24" stroke="#12a05f"/>
+        </g>
+        <g stroke="#f1c900" stroke-width="4" stroke-linecap="round"><path d="M365 22l4-12M385 30l11-5M388 50l11 3"/></g>
+      </svg>
+    </header>
+    <section class="speed-panel speed-panel-top" aria-label="Playback Speed">
+    <div class="speed-icon" aria-hidden="true"><svg viewBox="0 0 70 58" fill="none"><path d="M7 49a28 28 0 1 1 56 0" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M35 44 52 17" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="44" r="7" fill="currentColor"/></svg></div>
+    <div class="speed-heading"><strong>Playback Speed</strong><span>播放速度</span></div>
+    <div class="speed-buttons" role="group" aria-label="播放速度">
+      <button class="speed-btn" type="button" data-speed="0.8" aria-pressed="false">0.8x</button>
+      <button class="speed-btn selected" type="button" data-speed="1" aria-pressed="true">1.0x</button>
+      <button class="speed-btn" type="button" data-speed="1.2" aria-pressed="false">1.2x</button>
+    </div>
+    <div class="script-inline">
+      <span class="script-eye" aria-hidden="true">◉</span>
+      <button id="scriptToggle" class="script-toggle" type="button" aria-pressed="false">显示 Script</button>
+    </div>
+  </section>
+    <nav class="paragraph-nav" aria-label="跳转段落">
+      <span class="nav-caption">选择段落</span>
+      <a href="#paragraph-a" data-target="a">Paragraph A <small>2 sentences</small></a>
+      <a href="#paragraph-b" data-target="b">Paragraph B <small>9 sentences</small></a>
+      <a href="#paragraph-c" data-target="c">Paragraph C <small>7 sentences</small></a>
+      <a href="#paragraph-d" data-target="d">Paragraph D <small>3 sentences</small></a>
+      <a href="#paragraph-e" data-target="e">Paragraph E <small>8 sentences</small></a>
+      <a href="#paragraph-f" data-target="f">Paragraph F <small>7 sentences</small></a>
+      <a href="#paragraph-g" data-target="g">Paragraph G <small>10 sentences</small></a>
+    </nav>
+    <details class="paragraph-section" id="paragraph-a" open>
+      <summary class="paragraph-heading"><h2>Paragraph A</h2><span class="paragraph-heading-right"><span class="paragraph-count">2 sentences</span><svg class="chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="sentence-list">
+      <button class="sentence" data-sentence="0" data-para="A" data-local="1" aria-label="播放 Paragraph A 第1句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 1</span><span class="duration">00:06</span></span><span class="sentence-text script-text">How does a person become an Olympic champion—someone capable of winning the gold?</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="1" data-para="A" data-local="2" aria-label="播放 Paragraph A 第2句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 2</span><span class="duration">00:11</span></span><span class="sentence-text script-text">In reality, a combination of biological, environmental, and psychological factors, as well as training and practice, all go into making a super athlete.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      </div>
+    </details>
+    <details class="paragraph-section" id="paragraph-b" open>
+      <summary class="paragraph-heading"><h2>Paragraph B</h2><span class="paragraph-heading-right"><span class="paragraph-count">9 sentences</span><svg class="chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="sentence-list">
+      <button class="sentence" data-sentence="2" data-para="B" data-local="1" aria-label="播放 Paragraph B 第1句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 1</span><span class="duration">00:06</span></span><span class="sentence-text script-text">Perhaps the most important factor involved in becoming an elite athlete is genetic.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="3" data-para="B" data-local="2" aria-label="播放 Paragraph B 第2句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 2</span><span class="duration">00:08</span></span><span class="sentence-text script-text">Most Olympic competitors are equipped with certain physical characteristics that differentiate them from the average person.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="4" data-para="B" data-local="3" aria-label="播放 Paragraph B 第3句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 3</span><span class="duration">00:03</span></span><span class="sentence-text script-text">Take an elite athlete’s muscles, for example.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="5" data-para="B" data-local="4" aria-label="播放 Paragraph B 第4句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 4</span><span class="duration">00:08</span></span><span class="sentence-text script-text">In most human skeletal muscles (the ones that make your body move), there are fast-twitch fibers and slow-twitch fibers.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="6" data-para="B" data-local="5" aria-label="播放 Paragraph B 第5句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 5</span><span class="duration">00:03</span></span><span class="sentence-text script-text">Fast-twitch fibers help us move quickly.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="7" data-para="B" data-local="6" aria-label="播放 Paragraph B 第6句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 6</span><span class="duration">00:09</span></span><span class="sentence-text script-text">Olympic weightlifters, for example, have a large number of fast-twitch fibers in their muscles—many more than the average person.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="8" data-para="B" data-local="7" aria-label="播放 Paragraph B 第7句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 7</span><span class="duration">00:07</span></span><span class="sentence-text script-text">These allow them to lift hundreds of kilos from the ground and over their heads in seconds.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="9" data-para="B" data-local="8" aria-label="播放 Paragraph B 第8句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 8</span><span class="duration">00:07</span></span><span class="sentence-text script-text">Surprisingly, a large, muscular body is not the main requirement to do well in this sport.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="10" data-para="B" data-local="9" aria-label="播放 Paragraph B 第9句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 9</span><span class="duration">00:05</span></span><span class="sentence-text script-text">It is more important to have a large number of fast-twitch fibers in the muscles.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      </div>
+    </details>
+    <details class="paragraph-section" id="paragraph-c" open>
+      <summary class="paragraph-heading"><h2>Paragraph C</h2><span class="paragraph-heading-right"><span class="paragraph-count">7 sentences</span><svg class="chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="sentence-list">
+      <button class="sentence" data-sentence="11" data-para="C" data-local="1" aria-label="播放 Paragraph C 第1句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 1</span><span class="duration">00:09</span></span><span class="sentence-text script-text">The legs of an elite marathon runner, on the other hand, might contain up to 90 percent slow-twitch muscle fibers.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="12" data-para="C" data-local="2" aria-label="播放 Paragraph C 第2句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 2</span><span class="duration">00:09</span></span><span class="sentence-text script-text">These generate energy efficiently and enable an athlete to control fatigue and keep moving for a longer period of time.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="13" data-para="C" data-local="3" aria-label="播放 Paragraph C 第3句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 3</span><span class="duration">00:08</span></span><span class="sentence-text script-text">When we exercise long or hard, it’s common to experience tiredness, muscle pain, and difficulty breathing.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="14" data-para="C" data-local="4" aria-label="播放 Paragraph C 第4句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 4</span><span class="duration">00:07</span></span><span class="sentence-text script-text">These feelings are caused when the muscles produce high amounts of a substance called lactate and can’t remove it quickly enough.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="15" data-para="C" data-local="5" aria-label="播放 Paragraph C 第5句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 5</span><span class="duration">00:09</span></span><span class="sentence-text script-text">Athletes with many slow-twitch muscle fibers seem to be able to clear the lactate from their muscles faster as they move.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="16" data-para="C" data-local="6" aria-label="播放 Paragraph C 第6句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 6</span><span class="duration">00:06</span></span><span class="sentence-text script-text">Thus, the average runner might start to feel discomfort halfway into a race.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="17" data-para="C" data-local="7" aria-label="播放 Paragraph C 第7句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 7</span><span class="duration">00:06</span></span><span class="sentence-text script-text">A trained Olympic athlete, however, might not feel pain until much later in the competition.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      </div>
+    </details>
+    <details class="paragraph-section" id="paragraph-d" open>
+      <summary class="paragraph-heading"><h2>Paragraph D</h2><span class="paragraph-heading-right"><span class="paragraph-count">3 sentences</span><svg class="chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="sentence-list">
+      <button class="sentence" data-sentence="18" data-para="D" data-local="1" aria-label="播放 Paragraph D 第1句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 1</span><span class="duration">00:04</span></span><span class="sentence-text script-text">For some Olympic competitors, size is important.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="19" data-para="D" data-local="2" aria-label="播放 Paragraph D 第2句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 2</span><span class="duration">00:09</span></span><span class="sentence-text script-text">Most male champion swimmers are 180 centimeters or taller, allowing them to reach longer and swim faster.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="20" data-para="D" data-local="3" aria-label="播放 Paragraph D 第3句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 3</span><span class="duration">00:16</span></span><span class="sentence-text script-text">For both male and female gymnasts, though, a smaller size and body weight mean they can move with greater ease and are less likely to suffer damage when landing on the floor from a height of up to 4.5 meters.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      </div>
+    </details>
+    <details class="paragraph-section" id="paragraph-e" open>
+      <summary class="paragraph-heading"><h2>Paragraph E</h2><span class="paragraph-heading-right"><span class="paragraph-count">8 sentences</span><svg class="chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="sentence-list">
+      <button class="sentence" data-sentence="21" data-para="E" data-local="1" aria-label="播放 Paragraph E 第1句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 1</span><span class="duration">00:04</span></span><span class="sentence-text script-text">Some athletes’ abilities are naturally enhanced by their environment.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="22" data-para="E" data-local="2" aria-label="播放 Paragraph E 第2句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 2</span><span class="duration">00:09</span></span><span class="sentence-text script-text">Those raised at high altitudes in countries such as Kenya, Ethiopia, and Morocco have blood that is rich in hemoglobin.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="23" data-para="E" data-local="3" aria-label="播放 Paragraph E 第3句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 3</span><span class="duration">00:07</span></span><span class="sentence-text script-text">Large amounts of hemoglobin carry oxygen around the body faster, enabling these athletes to run better.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="24" data-para="E" data-local="4" aria-label="播放 Paragraph E 第4句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 4</span><span class="duration">00:05</span></span><span class="sentence-text script-text">Cultural factors also help some athletes do well at certain sports.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="25" data-para="E" data-local="5" aria-label="播放 Paragraph E 第5句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 5</span><span class="duration">00:06</span></span><span class="sentence-text script-text">Tegla Loroupe, a young woman from northern Kenya, has won several marathons.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="26" data-para="E" data-local="6" aria-label="播放 Paragraph E 第6句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 6</span><span class="duration">00:11</span></span><span class="sentence-text script-text">She says some of her success is due to her country’s altitude (she trains at about 2,400 meters) and some to her cultural background.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="27" data-para="E" data-local="7" aria-label="播放 Paragraph E 第7句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 7</span><span class="duration">00:05</span></span><span class="sentence-text script-text">As a child, she had to run 10 kilometers to school every day.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="28" data-para="E" data-local="8" aria-label="播放 Paragraph E 第8句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 8</span><span class="duration">00:03</span></span><span class="sentence-text script-text">“I’d be punished if I was late,” she says.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      </div>
+    </details>
+    <details class="paragraph-section" id="paragraph-f" open>
+      <summary class="paragraph-heading"><h2>Paragraph F</h2><span class="paragraph-heading-right"><span class="paragraph-count">7 sentences</span><svg class="chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="sentence-list">
+      <button class="sentence" data-sentence="29" data-para="F" data-local="1" aria-label="播放 Paragraph F 第1句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 1</span><span class="duration">00:09</span></span><span class="sentence-text script-text">Although genes, environment, and even culture play a part in becoming an elite athlete, training and practice are needed to succeed.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="30" data-para="F" data-local="2" aria-label="播放 Paragraph F 第2句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 2</span><span class="duration">00:10</span></span><span class="sentence-text script-text">Marathon runners may be able to control fatigue and keep moving for long periods of time, but they must train to reach and maintain their goals.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="31" data-para="F" data-local="3" aria-label="播放 Paragraph F 第3句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 3</span><span class="duration">00:09</span></span><span class="sentence-text script-text">Weightlifters and gymnasts perfect their skills by repeating the same motions again and again until they become automatic.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="32" data-para="F" data-local="4" aria-label="播放 Paragraph F 第4句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 4</span><span class="duration">00:08</span></span><span class="sentence-text script-text">Greg Louganis, winner of four Olympic diving gold medals, says divers must train the same way to be successful.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="33" data-para="F" data-local="5" aria-label="播放 Paragraph F 第5句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 5</span><span class="duration">00:07</span></span><span class="sentence-text script-text">“You have less than three seconds from takeoff until you hit the water, so it has to be reflex.”</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="34" data-para="F" data-local="6" aria-label="播放 Paragraph F 第6句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 6</span><span class="duration">00:04</span></span><span class="sentence-text script-text">“You have to repeat the dives hundreds, maybe thousands of times.”</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="35" data-para="F" data-local="7" aria-label="播放 Paragraph F 第7句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 7</span><span class="duration">00:07</span></span><span class="sentence-text script-text">Training this way requires an athlete to be not only physically fit but psychologically healthy as well.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      </div>
+    </details>
+    <details class="paragraph-section" id="paragraph-g" open>
+      <summary class="paragraph-heading"><h2>Paragraph G</h2><span class="paragraph-heading-right"><span class="paragraph-count">10 sentences</span><svg class="chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="sentence-list">
+      <button class="sentence" data-sentence="36" data-para="G" data-local="1" aria-label="播放 Paragraph G 第1句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 1</span><span class="duration">00:07</span></span><span class="sentence-text script-text">“They have to be,” says Sean McCann, a sports psychologist at the Olympic Training Center in the United States.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="37" data-para="G" data-local="2" aria-label="播放 Paragraph G 第2句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 2</span><span class="duration">00:04</span></span><span class="sentence-text script-text">“Otherwise, they couldn’t handle the training loads we put on them.”</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="38" data-para="G" data-local="3" aria-label="播放 Paragraph G 第3句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 3</span><span class="duration">00:07</span></span><span class="sentence-text script-text">“Athletes have to be good at setting goals, generating energy when they need it, and managing anxiety.”</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="39" data-para="G" data-local="4" aria-label="播放 Paragraph G 第4句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 4</span><span class="duration">00:03</span></span><span class="sentence-text script-text">How do athletes adjust to such intense pressure?</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="40" data-para="G" data-local="5" aria-label="播放 Paragraph G 第5句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 5</span><span class="duration">00:05</span></span><span class="sentence-text script-text">Louganis explains how he learned to control his anxiety during a competition.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="41" data-para="G" data-local="6" aria-label="播放 Paragraph G 第6句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 6</span><span class="duration">00:03</span></span><span class="sentence-text script-text">“Most divers think too much,” he says.</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="42" data-para="G" data-local="7" aria-label="播放 Paragraph G 第7句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 7</span><span class="duration">00:02</span></span><span class="sentence-text script-text">“They’re too much in their heads.”</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="43" data-para="G" data-local="8" aria-label="播放 Paragraph G 第8句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 8</span><span class="duration">00:02</span></span><span class="sentence-text script-text">“What worked for me was humor.”</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="44" data-para="G" data-local="9" aria-label="播放 Paragraph G 第9句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 9</span><span class="duration">00:05</span></span><span class="sentence-text script-text">“I remember thinking about what my mother would say if she saw me do a bad dive.”</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      <button class="sentence" data-sentence="45" data-para="G" data-local="10" aria-label="播放 Paragraph G 第10句" aria-pressed="false" type="button">
+        <span class="play-circle" aria-hidden="true"><svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg></span>
+        <span class="sentence-body"><span class="sentence-header"><span class="sentence-title">Sentence 10</span><span class="duration">00:04</span></span><span class="sentence-text script-text">“She’d probably just compliment me on the beautiful splash.”</span><span class="tiny-progress" aria-hidden="true"><span class="tiny-progress-fill"></span></span></span>
+      </button>
+      </div>
+    </details>
+  </section>
+  <p class="footer-note" id="status" role="status" aria-live="polite">选一句点击播放 · 再点一次暂停 · 可重复播放</p>
+  <audio id="audioPlayer" preload="auto" playsinline></audio>
+</main>
+<script src="../audio-1b/part-01.js"></script>
+<script src="../audio-1b/part-02.js"></script>
+<script src="../audio-1b/part-03.js"></script>
+<script src="../audio-1b/part-04.js"></script>
+<script src="../audio-1b/part-05.js"></script>
+<script src="../audio-1b/part-06.js"></script>
+<script src="../audio-1b/part-07.js"></script>
+<script src="../audio-1b/part-08.js"></script>
+<script src="../audio-1b/part-09.js"></script>
+<script src="../audio-1b/part-10.js"></script>
+<script src="../audio-1b/part-11.js"></script>
+<script src="../audio-1b/part-12.js"></script>
+<script src="../audio-1b/part-13.js"></script>
+<script src="../audio-1b/part-14.js"></script>
+<script src="../audio-1b/part-15.js"></script>
+<script src="../audio-1b/part-16.js"></script>
+<script src="../audio-1b/part-17.js"></script>
+<script>
+(() => {
+  'use strict';
+  // SENTENCE_AUDIO_SOURCES is replaced at build time in the standalone edition.
+  const sources = window.UNIT_AUDIO || [];
+  // Paragraph F uses standalone MP3 files in the repository (F1-F7).
+  const fAudioBase = '../audio/re3/1b/F/';
+  for (let n = 1; n <= 7; n++) {
+    sources[28 + n] = `${fAudioBase}F${n}.mp3`;
+  }
+  // Paragraph G uses standalone MP3 files in the repository (G1-G10).
+  const gAudioBase = '../audio/re3/1b/G/';
+  for (let n = 1; n <= 10; n++) {
+    sources[35 + n] = `${gAudioBase}G${n}.mp3`;
+  }
+  const player = document.getElementById('audioPlayer');
+  const cards = Array.from(document.querySelectorAll('[data-sentence]'));
+  const speeds = Array.from(document.querySelectorAll('[data-speed]'));
+  const status = document.getElementById('status');
+  const playIcon = '<svg class="control-icon" viewBox="0 0 40 40" fill="none"><path d="M11 7c0-2 2-3 4-2l21 13c2 1 2 3 0 4L15 35c-2 1-4 0-4-2V7Z" fill="currentColor"/></svg>';
+  const pauseIcon = '<svg class="control-icon" viewBox="0 0 40 40" fill="currentColor"><rect x="9" y="7" width="8" height="27" rx="2"/><rect x="23" y="7" width="8" height="27" rx="2"/></svg>';
+  let current = -1;
+  let speed = 1;
+  let playRequest = 0;
+
+  function render(){
+    cards.forEach((card,i)=>{
+      const isCurrent = i === current;
+      const playing = isCurrent && !player.paused && !player.ended;
+      card.classList.toggle('active',isCurrent);
+      card.classList.toggle('is-playing',playing);
+      card.classList.toggle('is-paused',isCurrent && !playing && player.currentTime > 0);
+      card.setAttribute('aria-pressed',String(playing));
+      card.setAttribute('aria-label',`${playing ? '暂停' : '播放'} Paragraph ${card.dataset.para} 第${card.dataset.local}句`);
+      card.querySelector('.play-circle').innerHTML = playing ? pauseIcon : playIcon;
+      const fill=card.querySelector('.tiny-progress-fill');
+      fill.style.width = isCurrent && Number.isFinite(player.duration) && player.duration>0 ? `${Math.min(100,100*player.currentTime/player.duration)}%` : '0%';
+    });
+    speeds.forEach(btn=>{
+      const active = Number(btn.dataset.speed) === speed;
+      btn.classList.toggle('selected',active);
+      btn.setAttribute('aria-pressed',String(active));
+    });
+  }
+
+  async function toggleSentence(i){
+    if(i === current && !player.paused){
+      player.pause();
+      status.textContent = `Paragraph ${cards[i].dataset.para} · Sentence ${cards[i].dataset.local} 已暂停 · 再点击继续播放`;
+      render();
+      return;
+    }
+    if(i !== current || player.ended){
+      ++playRequest;
+      player.pause();
+      current=i;
+      player.src=sources[i];
+      player.load();
+      player.playbackRate=speed;
+    }
+    const request=++playRequest;
+    // The play call happens directly from the click gesture for iPad Safari compatibility.
+    try{
+      await player.play();
+      if(request !== playRequest) return;
+      player.playbackRate=speed;
+      status.textContent = `正在播放 Paragraph ${cards[i].dataset.para} · Sentence ${cards[i].dataset.local} · ${speed.toFixed(1)}x`;
+    }catch(error){
+      if(request !== playRequest) return;
+      status.textContent = '无法播放音频，请确认浏览器允许播放声音。';
+      console.error('Audio playback failed:',error);
+    }
+    render();
+  }
+
+  cards.forEach((card,i)=>card.addEventListener('click',()=>toggleSentence(i)));
+  speeds.forEach(btn=>btn.addEventListener('click',()=>{
+    speed=Number(btn.dataset.speed);
+    player.playbackRate=speed;
+    status.textContent=`语速已调整为 ${speed.toFixed(1)}x`+(current>=0?' · 可以继续播放当前句子':'');
+    render();
+  }));
+  player.addEventListener('play',render);
+  player.addEventListener('pause',render);
+  player.addEventListener('timeupdate',render);
+  player.addEventListener('loadedmetadata',()=>{player.playbackRate=speed;render()});
+  player.addEventListener('ended',()=>{
+    const completed=current;
+    current=-1;
+    status.textContent=`Paragraph ${cards[completed].dataset.para} · Sentence ${cards[completed].dataset.local} 播放完成 · 点击可重新播放`;
+    render();
+  });
+  player.addEventListener('error',()=>{
+    status.textContent='音频加载失败。若使用分文件版，请检查 MP3 是否和网页放在同一文件夹。';
+    render();
+  });
+  document.querySelectorAll('.paragraph-nav a').forEach(link=>link.addEventListener('click',()=>{
+    const section=document.getElementById('paragraph-'+link.dataset.target);
+    if(section) section.open=true;
+    ++playRequest;
+    player.pause();
+    current=-1;
+    player.removeAttribute('src');
+    player.load();
+    status.textContent=`已切换到 ${link.textContent.trim().split(' ')[0]} ${link.textContent.trim().split(' ')[1]} · 请选择句子播放`;
+    render();
+  }));
+  // Native details headings can collapse a long paragraph without changing playback controls.
+  document.querySelectorAll('.paragraph-section').forEach(section => section.addEventListener('toggle',()=>{
+    if (!section.open && current>=0 && cards[current].closest('details')===section){
+      ++playRequest; player.pause(); current=-1; status.textContent='已收起 '+section.querySelector('h2').textContent; render();
+    }
+  }));
+  // Password-protected Script display; hiding never requires a password.
+  const scriptToggle = document.getElementById('scriptToggle');
+  if (scriptToggle) {
+    scriptToggle.addEventListener('click', () => {
+      const isShowing = document.body.classList.contains('show-scripts');
+      if (isShowing) {
+        document.body.classList.remove('show-scripts');
+        scriptToggle.setAttribute('aria-pressed', 'false');
+        scriptToggle.textContent = '显示 Script';
+        return;
+      }
+      const password = window.prompt('请输入密码以显示 Script：');
+      if (password === null) return;
+      if (password !== '042316') {
+        window.alert('密码错误，请重新输入。');
+        return;
+      }
+      document.body.classList.add('show-scripts');
+      scriptToggle.setAttribute('aria-pressed', 'true');
+      scriptToggle.textContent = '隐藏 Script';
+    });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
