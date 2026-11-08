@@ -400,6 +400,11 @@ body.show-scripts .script-text{display:block}
   'use strict';
   // SENTENCE_AUDIO_SOURCES is replaced at build time in the standalone edition.
   const sources = window.UNIT_AUDIO || [];
+  // Paragraph F uses standalone MP3 files in the repository (F1-F7).
+  const fAudioBase = 'units/reading-explorer-3/audio/re3/1b/F/';
+  for (let n = 1; n <= 7; n++) {
+    sources[28 + n] = `${fAudioBase}F${n}.mp3`;
+  }
   const player = document.getElementById('audioPlayer');
   const cards = Array.from(document.querySelectorAll('[data-sentence]'));
   const speeds = Array.from(document.querySelectorAll('[data-speed]'));
