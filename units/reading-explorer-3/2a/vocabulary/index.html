@@ -1,2 +1,106 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#eef8ff"><title>2A · What Is Beauty? · 词汇练习</title><style>
-:root{--navy:#10265a;--muted:#5f7393;--teal:#00a99d;--border:#b9dcff}*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#fbfdff,#eef7ff);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft Yahei",sans-serif;color:#17294a}.page{width:min(1050px,calc(100% - 30px));margin:32px auto}.panel{min-height:72vh;border:2px solid var(--border);border-radius:30px;background:white;overflow:hidden;box-shadow:0 12px 30px rgba(37,95,145,.08)}.hero{padding:28px 32px;background:linear-gradient(110deg,#e5f3ff,#f7fbff);border-bottom:1px solid #c4e0fa;display:flex;align-items:center;gap:18px}.badge{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;color:white;font-size:28px;font-weight:850;background:linear-gradient(145deg,#2adfd9,#168be9);box-shadow:0 7px 16px #168be933}.title{flex:1}.title h1{margin:0;color:var(--navy);font-size:clamp(27px,4vw,40px)}.title p{margin:6px 0 0;color:var(--muted);font-weight:650}.back{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:2px solid #20aaa5;border-radius:999px;padding:12px 18px;background:white;color:#08798b;font-weight:800;white-space:nowrap}.content{min-height:430px;display:grid;place-items:center;padding:40px;text-align:center}.empty h2{margin:0;color:var(--navy);font-size:28px}.empty p{color:var(--muted);font-size:17px;margin:10px 0 0}@media(max-width:620px){.page{margin:18px auto}.hero{padding:20px;flex-wrap:wrap}.badge{width:58px;height:58px;font-size:23px}.back{width:100%;order:3}.content{min-height:350px;padding:25px}}</style></head><body><main class="page"><section class="panel"><header class="hero"><div class="badge">2A</div><div class="title"><h1>词汇练习</h1><p>What Is Beauty?</p></div><a class="back" href="../">← 返回 2A 精听</a></header><section class="content"><div class="empty"><h2>Vocabulary Practice</h2><p>词汇练习内容将在这里添加。</p></div></section></section></main></body></html>
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#eef8ff">
+<title>2A · What Is Beauty? · Gringotts Vocabulary Challenge</title>
+<style>
+:root{--navy:#10265a;--ink:#17294a;--muted:#667997;--blue:#168be9;--teal:#00a99d;--line:#b9dcff;--gold:#d59b19;--silver:#8d9aaa;--bronze:#a96534}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#fbfdff,#edf7ff);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft Yahei",sans-serif;color:var(--ink)}
+.page{width:min(1120px,calc(100% - 28px));margin:26px auto 60px}.panel{border:2px solid var(--line);border-radius:30px;background:#fff;overflow:hidden;box-shadow:0 14px 34px #255f9114}
+.hero{padding:24px 28px;background:linear-gradient(110deg,#e5f3ff,#f8fbff);border-bottom:1px solid #c4e0fa;display:flex;align-items:center;gap:17px}.badge{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:27px;font-weight:900;background:linear-gradient(145deg,#2adfd9,#168be9);box-shadow:0 7px 16px #168be933}.title{flex:1}.title h1{margin:0;color:var(--navy);font-size:clamp(25px,3.5vw,38px)}.title p{margin:5px 0 0;color:var(--muted);font-weight:700}.back,.btn{border:0;text-decoration:none;cursor:pointer;border-radius:999px;padding:11px 17px;font-weight:850;font-size:15px}.back{border:2px solid #20aaa5;background:#fff;color:#08798b}.btn{background:linear-gradient(135deg,#168be9,#00a99d);color:#fff;box-shadow:0 5px 12px #168be92a}
+.vault{display:flex;align-items:center;gap:11px;padding:15px 26px;background:#fff9e9;border-bottom:1px solid #f0dfae;flex-wrap:wrap}.vault-title{font-weight:900;color:#6b4b0c;margin-right:auto}.coin{background:#fff;border:1px solid #e8d6a3;border-radius:999px;padding:7px 12px;font-weight:850}.g{color:#a16a00}.s{color:#66717e}.k{color:#98552c}
+.game{padding:25px}.topline{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:17px}.progress{font-weight:900;color:var(--navy);font-size:19px}.hint{color:var(--muted);font-size:14px}
+.bank{display:flex;flex-wrap:wrap;gap:9px;padding:17px;background:#f4f9ff;border:1.5px solid #cce5fb;border-radius:18px;margin-bottom:22px}.word{border:1.5px solid #83bce9;background:#fff;color:#174f82;border-radius:999px;padding:9px 13px;font-weight:800;cursor:pointer}.word.selected{background:#168be9;color:#fff;border-color:#168be9}.word.used{opacity:.34;pointer-events:none}
+.questions{display:grid;gap:12px}.q{border:1.5px solid #d5e8f8;border-radius:17px;padding:15px 17px;background:#fff;transition:.2s}.q.active{border-color:#31b6c8;box-shadow:0 0 0 3px #31b6c818}.q.correct{border-color:#77c89b;background:#f4fff8}.q.wrong{border-color:#ef8a8a;background:#fff7f7}.num{font-weight:900;color:#168be9;margin-right:7px}.blank{display:inline-block;min-width:135px;border-bottom:2px solid #7e94aa;padding:0 7px 2px;text-align:center;font-weight:900;color:#1169ae;cursor:pointer}.feedback{margin-top:7px;font-size:13px;font-weight:800;min-height:18px}.correct .feedback{color:#238153}.wrong .feedback{color:#bd4040}
+.finish{display:none;text-align:center;padding:25px;margin-top:20px;background:#f7fbff;border-radius:20px;border:1.5px solid #cce5fb}.finish.show{display:block}.finish h2{color:var(--navy);margin:0 0 7px}.reward{font-size:20px;font-weight:900;color:#a16a00}
+.exchange{position:fixed;inset:0;background:#0b1020c9;display:none;place-items:center;z-index:50}.exchange.show{display:grid}.magic{text-align:center;color:#fff}.orb{width:105px;height:105px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;font-size:45px;font-weight:900;background:radial-gradient(circle at 35% 30%,#fff7c7,#dca61d 55%,#805400);box-shadow:0 0 50px #ffd75b;animation:pop .8s ease both}.magic h2{font-size:30px;margin:0}.magic p{font-size:18px}@keyframes pop{0%{transform:scale(.15) rotate(-160deg);opacity:0}70%{transform:scale(1.2) rotate(15deg)}100%{transform:scale(1)}}
+@media(max-width:650px){.page{margin:14px auto}.hero{padding:18px;flex-wrap:wrap}.badge{width:55px;height:55px}.back{width:100%;text-align:center;order:3}.game{padding:16px}.vault{padding:12px 16px}.blank{min-width:105px}.q{line-height:1.8}}
+</style></head>
+<body><main class="page"><section class="panel">
+<header class="hero"><div class="badge">2A</div><div class="title"><h1>Gringotts Vocabulary Challenge</h1><p>What Is Beauty? · 词汇练习</p></div><a class="back" href="../">← 返回 2A 精听</a></header>
+<div class="vault"><span class="vault-title">🏦 Gringotts Vault</span><span class="coin g">🟡 Galleon <b id="g">0</b></span><span class="coin s">⚪ Sickle <b id="s">0</b></span><span class="coin k">🟤 Knut <b id="k">0</b></span></div>
+<section class="game"><div class="topline"><span class="progress" id="progress">本轮 10 题</span><span class="hint">先选 Word Bank 中的词，再点击对应句子的空格。普通答对 +1 Knut；累计错 ≥2 次后攻克该词 +1 Sickle。</span></div>
+<div class="bank" id="bank"></div><div class="questions" id="questions"></div>
+<div class="finish" id="finish"><h2>Challenge Complete!</h2><p id="score"></p><p class="reward" id="earned"></p><button class="btn" id="again">再来 10 题</button></div>
+</section></section></main>
+<div class="exchange" id="exchange"><div class="magic"><div class="orb" id="orb">⚪</div><h2 id="exchangeTitle">Gringotts Exchange!</h2><p id="exchangeText"></p></div></div>
+<script>
+const V=[
+["span","spans","His research ___ more than twenty years of work in environmental science."],
+["continent","continent","Animals migrated across the ___ during ancient climate changes."],
+["date back","date back","These ancient ruins ___ to a civilization that no longer exists."],
+["wealthy","wealthy","The family became extremely ___ after discovering valuable minerals on their land."],
+["wig","wigs","In historical dramas, actors often wear ___ to match the clothing of the period."],
+["attractive","attractive","He was considered very ___ because of his confidence and sense of humor."],
+["devote","devote","She decided to ___ her life to protecting endangered wildlife."],
+["cosmetic","cosmetic","Some people choose ___ procedures to improve their appearance."],
+["surgery","surgery","The patient needed ___ to repair a serious injury in his leg."],
+["perceive","perceive","Children often ___ small changes in their environment more quickly than adults."],
+["friendly","friendly","Her ___ attitude made everyone feel comfortable at the event."],
+["healthy","healthy","Regular exercise and good sleep habits are essential for staying ___."],
+["awareness","awareness","Public ___ of climate change has grown significantly in recent years."],
+["attractiveness","attractiveness","Researchers studied how certain facial features influence perceived ___."],
+["unattractive","unattractive","In the story, the hero feels ___ compared to his confident friends."],
+["psychologist","psychologist","A ___ interviewed the students to understand their stress levels."],
+["psychology","psychology","He chose to study ___ to better understand human behavior."],
+["preference","preference","Many people have a ___ for natural materials when buying furniture."],
+["feature","features","Scientists analyzed which ___ people notice first when meeting someone new."],
+["unconsciously","unconsciously","People often react ___ to emotional expressions on others’ faces."],
+["trait","trait","Honesty is a ___ that many people value in close relationships."],
+["fundamental","fundamental","Understanding basic nutrition is ___ to maintaining a healthy lifestyle."],
+["notion","notion","Everyone has a slightly different ___ of what success means."],
+["expectation","expectation","Their ___ was that the program would help them find better jobs."],
+["predominant","predominant","In many cultures, certain colors are ___ during festivals."],
+["anthropologist","anthropologist","The ___ spent years studying the traditions of indigenous tribes."],
+["anthropology","Anthropology","___ helps us understand how societies develop and change over time."],
+["biologist","biologist","The ___ discovered a new species of insect in the rainforest."],
+["subjective","subjective","Beauty is often ___ and varies from one person to another."],
+["vary","vary","Fashion trends ___ widely between cultures and age groups."],
+["symbol","symbol","In many stories, animals are used as a ___ of bravery or wisdom."],
+["strength","strength","After months of training, her ___ improved and she felt much more confident."],
+["decorate","decorated","They ___ the hall with flowers and lights for the festival."],
+["commonly","commonly","This plant is ___ found in warm, humid regions."],
+["associated with","associated with","Success is often ___ hard work and strong determination."],
+["masculine","masculine","In many cultures, deep voices are considered ___ and powerful."],
+["appealing","appealing","The film’s emotional ending was especially ___ to young viewers."],
+["standard","standard","Most schools follow a ___ method for evaluating student performance."],
+["saying","saying","There’s a ___ that reminds us not to judge others too quickly."],
+["in the eye of the beholder","in the eye of the beholder","Beauty is often said to be ___."]
+];
+const KEY="re3_vocab_vault_v1", ERR="re3_2a_vocab_errors_v1";
+let wallet=JSON.parse(localStorage.getItem(KEY)||'{"g":0,"s":0,"k":0}');
+let errors=JSON.parse(localStorage.getItem(ERR)||'{}'), round=[], selected=null, done=0, correct=0, earnedK=0, earnedS=0;
+function save(){localStorage.setItem(KEY,JSON.stringify(wallet));localStorage.setItem(ERR,JSON.stringify(errors));renderWallet()}
+function renderWallet(){g.textContent=wallet.g;s.textContent=wallet.s;k.textContent=wallet.k}
+function weightedPick(){
+ let pool=[]; V.forEach((v,i)=>{let w=1+Math.min(errors[v[0]]||0,3);for(let x=0;x<w;x++)pool.push(i)});
+ let ids=[];while(ids.length<10){let i=pool[Math.floor(Math.random()*pool.length)];if(!ids.includes(i))ids.push(i)}return ids.map(i=>V[i])
+}
+function start(){
+ round=weightedPick();selected=null;done=correct=earnedK=earnedS=0;finish.classList.remove("show");bank.innerHTML="";questions.innerHTML="";
+ [...round].sort(()=>Math.random()-.5).forEach(v=>{let b=document.createElement("button");b.className="word";b.textContent=v[0];b.dataset.word=v[0];b.onclick=()=>{document.querySelectorAll(".word").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");selected=v[0]};bank.appendChild(b)});
+ round.forEach((v,i)=>{let q=document.createElement("div");q.className="q";q.dataset.word=v[0];let parts=v[2].split("___");q.innerHTML='<span class="num">'+(i+1)+'.</span>'+parts[0]+'<span class="blank">________</span>'+parts[1]+'<div class="feedback"></div>';q.querySelector(".blank").onclick=()=>answer(q,v);questions.appendChild(q)});
+ progress.textContent="本轮 10 题 · 0/10";renderWallet()
+}
+function answer(q,v){
+ if(q.dataset.done||!selected)return;
+ const fb=q.querySelector(".feedback"), blank=q.querySelector(".blank");
+ if(selected===v[0]){
+   q.dataset.done="1";q.classList.remove("wrong");q.classList.add("correct");blank.textContent=v[1];correct++;done++;
+   let wc=errors[v[0]]||0;
+   if(wc>=2){wallet.s++;earnedS++;errors[v[0]]=0;fb.textContent="✓ Mastered! 累计错题已攻克：+1 Sickle";checkExchange()}
+   else{wallet.k++;earnedK++;fb.textContent="✓ Correct! +1 Knut";checkExchange()}
+   const wb=[...document.querySelectorAll(".word")].find(x=>x.dataset.word===v[0]);if(wb){wb.classList.add("used");wb.classList.remove("selected")}selected=null;save();
+   if(done===10)end()
+ }else{
+   errors[v[0]]=(errors[v[0]]||0)+1;q.classList.add("wrong");fb.textContent="Try again! 这个词的错误权重 +1";save()
+ }
+ progress.textContent="本轮 10 题 · "+done+"/10"
+}
+function checkExchange(){
+ let msg="";
+ while(wallet.k>=29){wallet.k-=29;wallet.s++;msg="29 Knuts → 1 Sickle";showExchange("⚪","Sickle forged!",msg)}
+ while(wallet.s>=17){wallet.s-=17;wallet.g++;msg="17 Sickles → 1 Galleon";setTimeout(()=>showExchange("🟡","Galleon forged!",msg),1200)}
+}
+function showExchange(icon,title,msg){orb.textContent=icon;exchangeTitle.textContent=title;exchangeText.textContent=msg;exchange.classList.add("show");setTimeout(()=>exchange.classList.remove("show"),1100)}
+function end(){finish.classList.add("show");score.textContent="10 / 10 已完成";earned.textContent="本轮获得 "+earnedK+" Knut"+(earnedS?(" + "+earnedS+" Sickle"):"");finish.scrollIntoView({behavior:"smooth",block:"center"})}
+again.onclick=start;renderWallet();start();
+</script></body></html>
