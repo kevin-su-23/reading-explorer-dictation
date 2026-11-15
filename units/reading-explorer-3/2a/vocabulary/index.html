@@ -68,7 +68,7 @@ const V=[
 const KEY="re3_vocab_vault_v1", ERR="re3_2a_vocab_errors_v1";
 let wallet=JSON.parse(localStorage.getItem(KEY)||'{"g":0,"s":0,"k":0}');
 let errors=JSON.parse(localStorage.getItem(ERR)||'{}'), round=[], selected=null, done=0, correct=0, earnedK=0, earnedS=0;
-const DAY_KEY="re3_2a_vocab_daily_round_v1", MIGRATION_KEY="re3_2a_sickle_reset_keep_one_v1";
+const DAY_KEY="re3_2a_vocab_daily_round_v1", MIGRATION_KEY="re3_2a_sickle_reset_keep_one_v1", RE_STATS_KEY="re3_learning_stats_v1";
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 let daily=JSON.parse(localStorage.getItem(DAY_KEY)||'{"date":"","wrongWords":[]}');
 if(daily.date!==today()) daily={date:today(),wrongWords:[]};
@@ -78,6 +78,9 @@ Object.keys(errors).forEach(w=>{if(typeof errors[w]==="number") errors[w]={count
 if(!localStorage.getItem(MIGRATION_KEY)){wallet.s=1;localStorage.setItem(MIGRATION_KEY,"done")}
 localStorage.setItem(DAY_KEY,JSON.stringify(daily));
 function save(){localStorage.setItem(KEY,JSON.stringify(wallet));localStorage.setItem(ERR,JSON.stringify(errors));localStorage.setItem(DAY_KEY,JSON.stringify(daily));renderWallet()}
+function statsUnit(){const all=JSON.parse(localStorage.getItem(RE_STATS_KEY)||'{}');const u=all["2A"]||(all["2A"]={listening:{},vocabulary:{},rewards:{knut:0,sickle:0,galleon:0}});u.vocabulary=u.vocabulary||{};u.rewards=u.rewards||{knut:0,sickle:0,galleon:0};return {all,u}}
+function recordWrong(word){const {all,u}=statsUnit();const r=u.vocabulary[word]||(u.vocabulary[word]={wrongAttempts:0});r.wrongAttempts++;localStorage.setItem(RE_STATS_KEY,JSON.stringify(all))}
+function recordReward(type,n=1){const {all,u}=statsUnit();u.rewards[type]=(u.rewards[type]||0)+n;localStorage.setItem(RE_STATS_KEY,JSON.stringify(all))}
 function renderWallet(){g.textContent=wallet.g;s.textContent=wallet.s;k.textContent=wallet.k}
 function weightedPick(){
  let pool=[]; V.forEach((v,i)=>{let e=errors[v[0]],c=typeof e==="object"?(e.count||0):(e||0),w=1+Math.min(c,3);for(let x=0;x<w;x++)pool.push(i)});
@@ -98,12 +101,13 @@ function answer(q,v){
    q.dataset.done="1";q.classList.remove("wrong");q.classList.add("correct");blank.textContent=v[1];correct++;done++;
    // Mastery requires >=2 historical error weights, a later calendar-day round, and a first-try correct answer today.
    const mastered=e.count>=2 && e.lastWrongDay && e.lastWrongDay!==today() && firstTry;
-   if(mastered){wallet.s++;earnedS++;errors[v[0]]={count:0,lastWrongDay:""};fb.textContent="✓ Mastered! 跨轮攻克错题：+1 Sickle";checkExchange()}
-   else{errors[v[0]]=e;wallet.k++;earnedK++;fb.textContent="✓ Correct! +1 Knut";checkExchange()}
+   if(mastered){wallet.s++;earnedS++;recordReward("sickle");errors[v[0]]={count:0,lastWrongDay:""};fb.textContent="✓ Mastered! 跨轮攻克错题：+1 Sickle";checkExchange()}
+   else{errors[v[0]]=e;wallet.k++;earnedK++;recordReward("knut");fb.textContent="✓ Correct! +1 Knut";checkExchange()}
    const wb=[...document.querySelectorAll(".word")].find(x=>x.dataset.word===v[0]);if(wb){wb.classList.add("used");wb.classList.remove("selected")}selected=null;save();
    if(done===10)end()
  }else{
    q.dataset.attempted="1";
+   recordWrong(v[0]);
    // Same word can add at most one error weight per calendar day, across all 10-question attempts.
    if(!daily.wrongWords.includes(v[0])){
      e.count++;e.lastWrongDay=today();daily.wrongWords.push(v[0]);fb.textContent="Try again! 今日首次错：错误权重 +1";
