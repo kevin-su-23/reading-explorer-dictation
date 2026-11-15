@@ -70,17 +70,13 @@ const V=[
 const KEY="re3_vocab_vault_v1", ERR="re3_2a_vocab_errors_v1";
 let wallet=JSON.parse(localStorage.getItem(KEY)||'{"g":0,"s":0,"k":0}');
 let errors=JSON.parse(localStorage.getItem(ERR)||'{}'), round=[], selected=null, done=0, correct=0, earnedK=0, earnedS=0;
-const DAY_KEY="re3_2a_vocab_daily_round_v1", MIGRATION_KEY="re3_2a_sickle_reset_keep_one_v1", RE_STATS_KEY="re3_learning_stats_v1", CHALLENGE_KEY="re3_2a_vocab_challenge_v2";
+const DAY_KEY="re3_2a_vocab_daily_round_v1", RE_STATS_KEY="re3_learning_stats_v1", CHALLENGE_KEY="re3_2a_vocab_challenge_v2";
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 let daily=JSON.parse(localStorage.getItem(DAY_KEY)||'{"date":"","wrongWords":[]}');
 if(daily.date!==today()) daily={date:today(),wrongWords:[]};
 let challenge=JSON.parse(localStorage.getItem(CHALLENGE_KEY)||'{"mastered":[],"missed":[],"completed":false}');
 if(!Array.isArray(challenge.mastered))challenge.mastered=[];if(!Array.isArray(challenge.missed))challenge.missed=[];
 Object.keys(errors).forEach(w=>{if(typeof errors[w]==="number") errors[w]={count:errors[w],lastWrongDay:today()}});
-if(!localStorage.getItem(MIGRATION_KEY)){wallet.s=1;localStorage.setItem(MIGRATION_KEY,"done")}
-// Baseline correction: preserve the child's legitimately earned Sickle from yesterday.
-const SICKLE_BASELINE_KEY="re3_2a_sickle_baseline_20261115_v1";
-if(!localStorage.getItem(SICKLE_BASELINE_KEY)){wallet.s=1;localStorage.setItem(SICKLE_BASELINE_KEY,"done")}
 localStorage.setItem(DAY_KEY,JSON.stringify(daily));
 function saveChallenge(){localStorage.setItem(CHALLENGE_KEY,JSON.stringify(challenge))}
 function save(){localStorage.setItem(KEY,JSON.stringify(wallet));localStorage.setItem(ERR,JSON.stringify(errors));localStorage.setItem(DAY_KEY,JSON.stringify(daily));saveChallenge();renderWallet()}
