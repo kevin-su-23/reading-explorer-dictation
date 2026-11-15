@@ -126,4 +126,4 @@ function fireCelebration(){celebrate.querySelectorAll(".confetti").forEach(x=>x.
 function showRoundComplete(withAnimation){finish.classList.add("show");score.textContent=V.length+" / "+V.length+" 词汇全部攻克";earned.textContent="本轮累计获得 "+earnedK+" Knut"+(earnedS?(" + "+earnedS+" Sickle"):"");bank.innerHTML="";questions.innerHTML="";renderProgress();if(withAnimation)fireCelebration();finish.scrollIntoView({behavior:"smooth",block:"center"})}
 again.onclick=()=>{challenge={mastered:[],missed:[],completed:false};earnedK=earnedS=0;saveChallenge();syncProgress();start()};
 renderWallet();syncProgress();start();
-</script></body></html>
+</script><script src="../../../../assets/re-cloud-sync.js"></script></body></html>
