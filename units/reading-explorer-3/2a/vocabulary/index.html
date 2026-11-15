@@ -13,14 +13,16 @@
 .finish{display:none;text-align:center;padding:25px;margin-top:20px;background:#f7fbff;border-radius:20px;border:1.5px solid #cce5fb}.finish.show{display:block}.finish h2{color:var(--navy);margin:0 0 7px}.reward{font-size:20px;font-weight:900;color:#a16a00}
 .exchange{position:fixed;inset:0;background:#0b1020c9;display:none;place-items:center;z-index:50}.exchange.show{display:grid}.magic{text-align:center;color:#fff}.orb{width:105px;height:105px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;font-size:45px;font-weight:900;background:radial-gradient(circle at 35% 30%,#fff7c7,#dca61d 55%,#805400);box-shadow:0 0 50px #ffd75b;animation:pop .8s ease both}.magic h2{font-size:30px;margin:0}.magic p{font-size:18px}@keyframes pop{0%{transform:scale(.15) rotate(-160deg);opacity:0}70%{transform:scale(1.2) rotate(15deg)}100%{transform:scale(1)}}
 @media(max-width:650px){.page{margin:14px auto}.hero{padding:18px;flex-wrap:wrap}.badge{width:55px;height:55px}.back{width:100%;text-align:center;order:3}.game{padding:16px}.vault{padding:12px 16px}.blank{min-width:105px}.q{padding:8px 12px;line-height:1.55}}
+.celebrate{position:fixed;inset:0;z-index:80;pointer-events:none;display:none;overflow:hidden;background:#08152a22}.celebrate.show{display:block}.celebrate-card{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) scale(.7);background:#fffffff2;border:2px solid #9bd6ff;border-radius:28px;padding:28px 42px;text-align:center;box-shadow:0 18px 70px #173b6c44;animation:cardPop .55s cubic-bezier(.2,.9,.3,1.25) forwards}.celebrate-card h2{margin:0;color:var(--navy);font-size:clamp(28px,5vw,48px)}.celebrate-card p{margin:8px 0 0;color:#48708e;font-weight:850;font-size:18px}.confetti{position:absolute;top:-8vh;width:11px;height:18px;border-radius:3px;animation:fall var(--dur) linear forwards;transform:rotate(var(--rot))}@keyframes cardPop{to{transform:translate(-50%,-50%) scale(1)}}@keyframes fall{0%{transform:translate3d(0,-10vh,0) rotate(0)}100%{transform:translate3d(var(--drift),115vh,0) rotate(900deg)}}
 </style></head>
 <body><main class="page"><section class="panel">
 <header class="hero"><div class="badge">2A</div><div class="title"><h1>Gringotts Vocabulary Challenge</h1><p>What Is Beauty? · 词汇练习</p></div><a class="back" href="../">← 返回 2A 精听</a></header>
 <div class="vault"><span class="vault-title">🏦 Gringotts Vault</span><span class="coin g">🟡 Galleon <b id="g">0</b></span><span class="coin s">⚪ Sickle <b id="s">0</b></span><span class="coin k">🟤 Knut <b id="k">0</b></span></div>
-<section class="game"><div class="topline"><span class="progress" id="progress">本轮 10 题</span><span class="hint">先选 Word Bank 中的词，再点击对应句子的空格。同一天所有尝试算一轮：每词每天最多记错 1 次；累计错 ≥2 轮后，在后续日期首次答对该词 +1 Sickle。</span></div>
+<section class="game"><div class="topline"><span class="progress" id="progress">本轮进度 0/40</span><span class="hint">先选 Word Bank 中的词，再点击对应句子的空格。同一天所有尝试算一轮：每词每天最多记错 1 次；累计错 ≥2 轮后，在后续日期首次答对该词 +1 Sickle。</span></div>
 <div class="bank" id="bank"></div><div class="questions" id="questions"></div>
-<div class="finish" id="finish"><h2>Challenge Complete!</h2><p id="score"></p><p class="reward" id="earned"></p><button class="btn" id="again">再来 10 题</button></div>
+<div class="finish" id="finish"><h2>🎉 本轮挑战完成！</h2><p id="score"></p><p class="reward" id="earned"></p><button class="btn" id="again">开始新一轮</button></div>
 </section></section></main>
+<div class="celebrate" id="celebrate"><div class="celebrate-card"><h2>🎉 本轮挑战完成！</h2><p>40 / 40 词汇全部攻克</p></div></div>
 <div class="exchange" id="exchange"><div class="magic"><div class="orb" id="orb">⚪</div><h2 id="exchangeTitle">Gringotts Exchange!</h2><p id="exchangeText"></p></div></div>
 <script>
 const V=[
@@ -68,62 +70,61 @@ const V=[
 const KEY="re3_vocab_vault_v1", ERR="re3_2a_vocab_errors_v1";
 let wallet=JSON.parse(localStorage.getItem(KEY)||'{"g":0,"s":0,"k":0}');
 let errors=JSON.parse(localStorage.getItem(ERR)||'{}'), round=[], selected=null, done=0, correct=0, earnedK=0, earnedS=0;
-const DAY_KEY="re3_2a_vocab_daily_round_v1", MIGRATION_KEY="re3_2a_sickle_reset_keep_one_v1", RE_STATS_KEY="re3_learning_stats_v1";
+const DAY_KEY="re3_2a_vocab_daily_round_v1", MIGRATION_KEY="re3_2a_sickle_reset_keep_one_v1", RE_STATS_KEY="re3_learning_stats_v1", CHALLENGE_KEY="re3_2a_vocab_challenge_v2";
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 let daily=JSON.parse(localStorage.getItem(DAY_KEY)||'{"date":"","wrongWords":[]}');
 if(daily.date!==today()) daily={date:today(),wrongWords:[]};
-// Upgrade old numeric error weights. Treat legacy weights as historical, but block same-day mastery after migration.
+let challenge=JSON.parse(localStorage.getItem(CHALLENGE_KEY)||'{"mastered":[],"missed":[],"completed":false}');
+if(!Array.isArray(challenge.mastered))challenge.mastered=[];if(!Array.isArray(challenge.missed))challenge.missed=[];
 Object.keys(errors).forEach(w=>{if(typeof errors[w]==="number") errors[w]={count:errors[w],lastWrongDay:today()}});
-// One-time cleanup requested after testing: keep exactly one Sickle; preserve Galleons and Knuts.
 if(!localStorage.getItem(MIGRATION_KEY)){wallet.s=1;localStorage.setItem(MIGRATION_KEY,"done")}
 localStorage.setItem(DAY_KEY,JSON.stringify(daily));
-function save(){localStorage.setItem(KEY,JSON.stringify(wallet));localStorage.setItem(ERR,JSON.stringify(errors));localStorage.setItem(DAY_KEY,JSON.stringify(daily));renderWallet()}
-function statsUnit(){const all=JSON.parse(localStorage.getItem(RE_STATS_KEY)||'{}');const u=all["2A"]||(all["2A"]={listening:{},vocabulary:{},rewards:{knut:0,sickle:0,galleon:0}});u.vocabulary=u.vocabulary||{};u.rewards=u.rewards||{knut:0,sickle:0,galleon:0};return {all,u}}
+function saveChallenge(){localStorage.setItem(CHALLENGE_KEY,JSON.stringify(challenge))}
+function save(){localStorage.setItem(KEY,JSON.stringify(wallet));localStorage.setItem(ERR,JSON.stringify(errors));localStorage.setItem(DAY_KEY,JSON.stringify(daily));saveChallenge();renderWallet()}
+function statsUnit(){const all=JSON.parse(localStorage.getItem(RE_STATS_KEY)||'{}');const u=all["2A"]||(all["2A"]={listening:{},vocabulary:{},rewards:{knut:0,sickle:0,galleon:0}});u.vocabulary=u.vocabulary||{};u.rewards=u.rewards||{knut:0,sickle:0,galleon:0};u.vocabularyProgress={mastered:challenge.mastered.length,total:V.length};return {all,u}}
 function recordWrong(word){const {all,u}=statsUnit();const r=u.vocabulary[word]||(u.vocabulary[word]={wrongAttempts:0});r.wrongAttempts++;localStorage.setItem(RE_STATS_KEY,JSON.stringify(all))}
 function recordReward(type,n=1){const {all,u}=statsUnit();u.rewards[type]=(u.rewards[type]||0)+n;localStorage.setItem(RE_STATS_KEY,JSON.stringify(all))}
+function syncProgress(){const {all}=statsUnit();localStorage.setItem(RE_STATS_KEY,JSON.stringify(all))}
 function renderWallet(){g.textContent=wallet.g;s.textContent=wallet.s;k.textContent=wallet.k}
-function weightedPick(){
- let pool=[]; V.forEach((v,i)=>{let e=errors[v[0]],c=typeof e==="object"?(e.count||0):(e||0),w=1+Math.min(c,3);for(let x=0;x<w;x++)pool.push(i)});
- let ids=[];while(ids.length<10){let i=pool[Math.floor(Math.random()*pool.length)];if(!ids.includes(i))ids.push(i)}return ids.map(i=>V[i])
+function pickBatch(){
+ const mastered=new Set(challenge.mastered), missed=new Set(challenge.missed);
+ let candidates=V.filter(v=>!mastered.has(v[0]));
+ candidates.sort((a,b)=>(missed.has(b[0])-missed.has(a[0]))||Math.random()-.5);
+ return candidates.slice(0,10);
 }
+function renderProgress(){progress.textContent="本轮进度 "+challenge.mastered.length+"/"+V.length+(round.length?(" · 本组 "+done+"/"+round.length):"")}
 function start(){
- round=weightedPick();selected=null;done=correct=earnedK=earnedS=0;finish.classList.remove("show");bank.innerHTML="";questions.innerHTML="";
+ if(challenge.completed||challenge.mastered.length>=V.length){showRoundComplete(false);return}
+ round=pickBatch();selected=null;done=correct=0;finish.classList.remove("show");bank.innerHTML="";questions.innerHTML="";
  [...round].sort(()=>Math.random()-.5).forEach(v=>{let b=document.createElement("button");b.className="word";b.textContent=v[0];b.dataset.word=v[0];b.onclick=()=>{document.querySelectorAll(".word").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");selected=v[0]};bank.appendChild(b)});
  round.forEach((v,i)=>{let q=document.createElement("div");q.className="q";q.dataset.word=v[0];let parts=v[2].split("___");q.innerHTML='<span class="num">'+(i+1)+'.</span>'+parts[0]+'<span class="blank">________</span>'+parts[1]+'<div class="feedback"></div>';q.querySelector(".blank").onclick=()=>answer(q,v);questions.appendChild(q)});
- progress.textContent="本轮 10 题 · 0/10";renderWallet()
+ renderProgress();renderWallet()
 }
 function answer(q,v){
  if(q.dataset.done||!selected)return;
- const fb=q.querySelector(".feedback"), blank=q.querySelector(".blank");
- let e=errors[v[0]]; if(!e||typeof e!=="object") e={count:Number(e)||0,lastWrongDay:""};
+ const fb=q.querySelector(".feedback"),blank=q.querySelector(".blank");let e=errors[v[0]];if(!e||typeof e!=="object")e={count:Number(e)||0,lastWrongDay:""};
  const firstTry=!q.dataset.attempted;
  if(selected===v[0]){
    q.dataset.done="1";q.classList.remove("wrong");q.classList.add("correct");blank.textContent=v[1];correct++;done++;
-   // Mastery requires >=2 historical error weights, a later calendar-day round, and a first-try correct answer today.
-   const mastered=e.count>=2 && e.lastWrongDay && e.lastWrongDay!==today() && firstTry;
-   if(mastered){wallet.s++;earnedS++;recordReward("sickle");errors[v[0]]={count:0,lastWrongDay:""};fb.textContent="✓ Mastered! 跨轮攻克错题：+1 Sickle";checkExchange()}
+   const masteredReward=e.count>=2&&e.lastWrongDay&&e.lastWrongDay!==today()&&firstTry;
+   if(masteredReward){wallet.s++;earnedS++;recordReward("sickle");errors[v[0]]={count:0,lastWrongDay:""};fb.textContent="✓ Mastered! 跨轮攻克错题：+1 Sickle";checkExchange()}
    else{errors[v[0]]=e;wallet.k++;earnedK++;recordReward("knut");fb.textContent="✓ Correct! +1 Knut";checkExchange()}
-   const wb=[...document.querySelectorAll(".word")].find(x=>x.dataset.word===v[0]);if(wb){wb.classList.add("used");wb.classList.remove("selected")}selected=null;save();
-   if(done===10)end()
+   if(!challenge.mastered.includes(v[0]))challenge.mastered.push(v[0]);
+   challenge.missed=challenge.missed.filter(w=>w!==v[0]);
+   const wb=[...document.querySelectorAll(".word")].find(x=>x.dataset.word===v[0]);if(wb){wb.classList.add("used");wb.classList.remove("selected")}selected=null;save();syncProgress();
+   if(challenge.mastered.length>=V.length){challenge.completed=true;save();syncProgress();showRoundComplete(true)}
+   else if(done===round.length){setTimeout(start,650)}
  }else{
-   q.dataset.attempted="1";
-   recordWrong(v[0]);
-   // Same word can add at most one error weight per calendar day, across all 10-question attempts.
-   if(!daily.wrongWords.includes(v[0])){
-     e.count++;e.lastWrongDay=today();daily.wrongWords.push(v[0]);fb.textContent="Try again! 今日首次错：错误权重 +1";
-   }else{
-     fb.textContent="Try again! 今天这个词已记错，不重复增加权重";
-   }
+   q.dataset.attempted="1";recordWrong(v[0]);if(!challenge.missed.includes(v[0]))challenge.missed.push(v[0]);
+   if(!daily.wrongWords.includes(v[0])){e.count++;e.lastWrongDay=today();daily.wrongWords.push(v[0]);fb.textContent="Try again! 今日首次错：错误权重 +1"}else fb.textContent="Try again! 今天这个词已记错，不重复增加权重";
    errors[v[0]]=e;q.classList.add("wrong");save()
  }
- progress.textContent="本轮 10 题 · "+done+"/10"
+ renderProgress()
 }
-function checkExchange(){
- let msg="";
- while(wallet.k>=29){wallet.k-=29;wallet.s++;msg="29 Knuts → 1 Sickle";showExchange("⚪","Sickle forged!",msg)}
- while(wallet.s>=17){wallet.s-=17;wallet.g++;msg="17 Sickles → 1 Galleon";setTimeout(()=>showExchange("🟡","Galleon forged!",msg),1200)}
-}
+function checkExchange(){let msg="";while(wallet.k>=29){wallet.k-=29;wallet.s++;msg="29 Knuts → 1 Sickle";showExchange("⚪","Sickle forged!",msg)}while(wallet.s>=17){wallet.s-=17;wallet.g++;msg="17 Sickles → 1 Galleon";setTimeout(()=>showExchange("🟡","Galleon forged!",msg),1200)}}
 function showExchange(icon,title,msg){orb.textContent=icon;exchangeTitle.textContent=title;exchangeText.textContent=msg;exchange.classList.add("show");setTimeout(()=>exchange.classList.remove("show"),1100)}
-function end(){finish.classList.add("show");score.textContent="10 / 10 已完成";earned.textContent="本轮获得 "+earnedK+" Knut"+(earnedS?(" + "+earnedS+" Sickle"):"");finish.scrollIntoView({behavior:"smooth",block:"center"})}
-again.onclick=start;renderWallet();start();
+function fireCelebration(){celebrate.querySelectorAll(".confetti").forEach(x=>x.remove());const colors=["#168be9","#00a99d","#f4bf2a","#ff6b6b","#8b6ee8","#ff8f3d"];for(let i=0;i<90;i++){const c=document.createElement("i");c.className="confetti";c.style.left=(Math.random()*100)+"vw";c.style.background=colors[i%colors.length];c.style.setProperty("--dur",(2+Math.random()*1.7)+"s");c.style.setProperty("--drift",(-90+Math.random()*180)+"px");c.style.setProperty("--rot",(Math.random()*180)+"deg");c.style.animationDelay=(Math.random()*.45)+"s";celebrate.appendChild(c)}celebrate.classList.add("show");setTimeout(()=>celebrate.classList.remove("show"),3300)}
+function showRoundComplete(withAnimation){finish.classList.add("show");score.textContent=V.length+" / "+V.length+" 词汇全部攻克";earned.textContent="本轮累计获得 "+earnedK+" Knut"+(earnedS?(" + "+earnedS+" Sickle"):"");bank.innerHTML="";questions.innerHTML="";renderProgress();if(withAnimation)fireCelebration();finish.scrollIntoView({behavior:"smooth",block:"center"})}
+again.onclick=()=>{challenge={mastered:[],missed:[],completed:false};earnedK=earnedS=0;saveChallenge();syncProgress();start()};
+renderWallet();syncProgress();start();
 </script></body></html>
