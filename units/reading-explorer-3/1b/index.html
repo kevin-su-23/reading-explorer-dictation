@@ -441,6 +441,18 @@ body.show-scripts .script-text{display:block}
     });
   }
 
+  const RE_STATS_KEY='re3_learning_stats_v1';
+  function recordSentencePlay(card){
+    const stats=JSON.parse(localStorage.getItem(RE_STATS_KEY)||'{}');
+    const u=stats['1B']||(stats['1B']={listening:{},vocabulary:{},rewards:{knut:0,sickle:0,galleon:0}});
+    u.listening=u.listening||{};
+    const id=card.dataset.para+'-'+card.dataset.local;
+    const text=(card.querySelector('.sentence-text')?.textContent||'').trim();
+    const row=u.listening[id]||(u.listening[id]={paragraph:card.dataset.para,sentence:Number(card.dataset.local),text:text,plays:0});
+    row.plays=(row.plays||0)+1; row.text=text; row.paragraph=card.dataset.para; row.sentence=Number(card.dataset.local);
+    localStorage.setItem(RE_STATS_KEY,JSON.stringify(stats));
+  }
+
   async function toggleSentence(i){
     if(i === current && !player.paused){
       player.pause();
@@ -448,7 +460,8 @@ body.show-scripts .script-text{display:block}
       render();
       return;
     }
-    if(i !== current || player.ended){
+    const isNewPlay=(i !== current || player.ended);
+    if(isNewPlay){
       ++playRequest;
       player.pause();
       current=i;
@@ -461,6 +474,7 @@ body.show-scripts .script-text{display:block}
     try{
       await player.play();
       if(request !== playRequest) return;
+      if(isNewPlay) recordSentencePlay(cards[i]);
       player.playbackRate=speed;
       status.textContent = `正在播放 Paragraph ${cards[i].dataset.para} · Sentence ${cards[i].dataset.local} · ${speed.toFixed(1)}x`;
     }catch(error){
