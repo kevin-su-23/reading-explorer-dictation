@@ -17,7 +17,7 @@
 <body><main class="page"><section class="panel">
 <header class="hero"><div class="badge">2A</div><div class="title"><h1>Gringotts Vocabulary Challenge</h1><p>What Is Beauty? · 词汇练习</p></div><a class="back" href="../">← 返回 2A 精听</a></header>
 <div class="vault"><span class="vault-title">🏦 Gringotts Vault</span><span class="coin g">🟡 Galleon <b id="g">0</b></span><span class="coin s">⚪ Sickle <b id="s">0</b></span><span class="coin k">🟤 Knut <b id="k">0</b></span></div>
-<section class="game"><div class="topline"><span class="progress" id="progress">本轮 10 题</span><span class="hint">先选 Word Bank 中的词，再点击对应句子的空格。普通答对 +1 Knut；累计错 ≥2 次后攻克该词 +1 Sickle。</span></div>
+<section class="game"><div class="topline"><span class="progress" id="progress">本轮 10 题</span><span class="hint">先选 Word Bank 中的词，再点击对应句子的空格。同一天所有尝试算一轮：每词每天最多记错 1 次；累计错 ≥2 轮后，在后续日期首次答对该词 +1 Sickle。</span></div>
 <div class="bank" id="bank"></div><div class="questions" id="questions"></div>
 <div class="finish" id="finish"><h2>Challenge Complete!</h2><p id="score"></p><p class="reward" id="earned"></p><button class="btn" id="again">再来 10 题</button></div>
 </section></section></main>
@@ -68,10 +68,19 @@ const V=[
 const KEY="re3_vocab_vault_v1", ERR="re3_2a_vocab_errors_v1";
 let wallet=JSON.parse(localStorage.getItem(KEY)||'{"g":0,"s":0,"k":0}');
 let errors=JSON.parse(localStorage.getItem(ERR)||'{}'), round=[], selected=null, done=0, correct=0, earnedK=0, earnedS=0;
-function save(){localStorage.setItem(KEY,JSON.stringify(wallet));localStorage.setItem(ERR,JSON.stringify(errors));renderWallet()}
+const DAY_KEY="re3_2a_vocab_daily_round_v1", MIGRATION_KEY="re3_2a_sickle_reset_keep_one_v1";
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+let daily=JSON.parse(localStorage.getItem(DAY_KEY)||'{"date":"","wrongWords":[]}');
+if(daily.date!==today()) daily={date:today(),wrongWords:[]};
+// Upgrade old numeric error weights. Treat legacy weights as historical, but block same-day mastery after migration.
+Object.keys(errors).forEach(w=>{if(typeof errors[w]==="number") errors[w]={count:errors[w],lastWrongDay:today()}});
+// One-time cleanup requested after testing: keep exactly one Sickle; preserve Galleons and Knuts.
+if(!localStorage.getItem(MIGRATION_KEY)){wallet.s=1;localStorage.setItem(MIGRATION_KEY,"done")}
+localStorage.setItem(DAY_KEY,JSON.stringify(daily));
+function save(){localStorage.setItem(KEY,JSON.stringify(wallet));localStorage.setItem(ERR,JSON.stringify(errors));localStorage.setItem(DAY_KEY,JSON.stringify(daily));renderWallet()}
 function renderWallet(){g.textContent=wallet.g;s.textContent=wallet.s;k.textContent=wallet.k}
 function weightedPick(){
- let pool=[]; V.forEach((v,i)=>{let w=1+Math.min(errors[v[0]]||0,3);for(let x=0;x<w;x++)pool.push(i)});
+ let pool=[]; V.forEach((v,i)=>{let e=errors[v[0]],c=typeof e==="object"?(e.count||0):(e||0),w=1+Math.min(c,3);for(let x=0;x<w;x++)pool.push(i)});
  let ids=[];while(ids.length<10){let i=pool[Math.floor(Math.random()*pool.length)];if(!ids.includes(i))ids.push(i)}return ids.map(i=>V[i])
 }
 function start(){
@@ -83,15 +92,25 @@ function start(){
 function answer(q,v){
  if(q.dataset.done||!selected)return;
  const fb=q.querySelector(".feedback"), blank=q.querySelector(".blank");
+ let e=errors[v[0]]; if(!e||typeof e!=="object") e={count:Number(e)||0,lastWrongDay:""};
+ const firstTry=!q.dataset.attempted;
  if(selected===v[0]){
    q.dataset.done="1";q.classList.remove("wrong");q.classList.add("correct");blank.textContent=v[1];correct++;done++;
-   let wc=errors[v[0]]||0;
-   if(wc>=2){wallet.s++;earnedS++;errors[v[0]]=0;fb.textContent="✓ Mastered! 累计错题已攻克：+1 Sickle";checkExchange()}
-   else{wallet.k++;earnedK++;fb.textContent="✓ Correct! +1 Knut";checkExchange()}
+   // Mastery requires >=2 historical error weights, a later calendar-day round, and a first-try correct answer today.
+   const mastered=e.count>=2 && e.lastWrongDay && e.lastWrongDay!==today() && firstTry;
+   if(mastered){wallet.s++;earnedS++;errors[v[0]]={count:0,lastWrongDay:""};fb.textContent="✓ Mastered! 跨轮攻克错题：+1 Sickle";checkExchange()}
+   else{errors[v[0]]=e;wallet.k++;earnedK++;fb.textContent="✓ Correct! +1 Knut";checkExchange()}
    const wb=[...document.querySelectorAll(".word")].find(x=>x.dataset.word===v[0]);if(wb){wb.classList.add("used");wb.classList.remove("selected")}selected=null;save();
    if(done===10)end()
  }else{
-   errors[v[0]]=(errors[v[0]]||0)+1;q.classList.add("wrong");fb.textContent="Try again! 这个词的错误权重 +1";save()
+   q.dataset.attempted="1";
+   // Same word can add at most one error weight per calendar day, across all 10-question attempts.
+   if(!daily.wrongWords.includes(v[0])){
+     e.count++;e.lastWrongDay=today();daily.wrongWords.push(v[0]);fb.textContent="Try again! 今日首次错：错误权重 +1";
+   }else{
+     fb.textContent="Try again! 今天这个词已记错，不重复增加权重";
+   }
+   errors[v[0]]=e;q.classList.add("wrong");save()
  }
  progress.textContent="本轮 10 题 · "+done+"/10"
 }
